@@ -1,4 +1,4 @@
-(ns curso.aula2)
+(ns curso.module1.aula2)
 
 
 (if (> 500 100)

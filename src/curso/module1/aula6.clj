@@ -1,4 +1,4 @@
-(ns curso.aula6)
+(ns curso.module1.aula6)
 ;keyword
 ; :key-word
 

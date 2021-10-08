@@ -1,4 +1,4 @@
-(ns curso.aula3)
+(ns curso.module1.aula3)
 
 ; PREDICATE
 (defn aplica-desconto?

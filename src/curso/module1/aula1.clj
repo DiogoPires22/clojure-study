@@ -1,4 +1,4 @@
-(ns curso.aula1)
+(ns curso.module1.aula1)
 
 (defn print-message []
   (println "---------------------")
