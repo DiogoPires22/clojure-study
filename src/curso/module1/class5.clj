@@ -1,4 +1,4 @@
-(ns curso.module1.aula5)
+(ns curso.module1.class5)
 
 (def precos [30 700 1000])
 

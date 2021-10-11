@@ -1,4 +1,4 @@
-(ns curso.module2.class-1)
+(ns curso.module2.class1)
 
 ;["daniela" "guilherme" "carlos" "paulo"]
 ; { "guilherme" 32 "paulo" 21 }
@@ -15,14 +15,14 @@
   [f s]
   (let [ele (first s)  rest-s (rest s) ]
     (f ele)
-    (if (not ( empty? rest-s))
+    (if (not (empty? rest-s))
           (my-map f rest-s)
           nil)))
 
 (defn my-map
   [f s]
   (let [ele (first s)]
-    (if (not ( nil? ele))
+    (if (not (nil? ele))
       (do
         (f ele)
         (recur f (rest s))))))

@@ -1,4 +1,4 @@
-(ns curso.module1.aula4)
+(ns curso.module1.class4)
 ; HIGHER ORDER FUNCTIONS
 ; IMUTABILITY
 

@@ -1,4 +1,4 @@
-(ns curso.module1.aula7)
+(ns curso.module1.class7)
 
 ;; MAP AND REDUCE
 
