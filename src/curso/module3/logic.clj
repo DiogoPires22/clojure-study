@@ -13,6 +13,8 @@
     (update hospital queue-key conj user-id)
     (throw (ex-info "queue is full" {:queue queue-key :user user-id}))))
 
+
+;Its a mad function because there's a rand and its alter the state of sleep
 (defn delayed-add-in-queue
   [hospital queue-key user-id]
   (if (available-allocation? hospital queue-key)
