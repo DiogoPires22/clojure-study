@@ -12,7 +12,12 @@
   (def hospital (c.logic/add-in-queue hospital :lab3 "555"))
   (def hospital (c.logic/start-treatment hospital :waiting))
   (def hospital (c.logic/start-treatment hospital :lab1))
-  (pprint hospital))
 
+  (def hospital (c.logic/add-in-queue hospital :waiting "333"))
+  (def hospital (c.logic/add-in-queue hospital :waiting "444"))
+  (def hospital (c.logic/add-in-queue hospital :waiting "555"))
+  (def hospital (c.logic/add-in-queue hospital :waiting "666"))
+  (def hospital (c.logic/add-in-queue hospital :waiting "777"))
+  (pprint hospital))
 
 (simulate-a-day)

@@ -1,10 +1,17 @@
 (ns curso.module3.logic)
 
+(defn available-allocation?
+  [hospital queue-key]
+  (-> hospital
+      (get queue-key)
+      (count)
+      (< 6)))
 
 (defn add-in-queue
-  [hospital queue user-id]
-  (update hospital queue conj user-id))
-
+  [hospital queue-key user-id]
+  (if (available-allocation? hospital queue-key)
+    (update hospital queue-key conj user-id)
+    (throw (ex-info "queue is full" {:queue queue-key :user user-id}))))
 
 (defn start-treatment
   [hospital queue]
