@@ -20,4 +20,24 @@
   (def hospital (c.logic/add-in-queue hospital :waiting "777"))
   (pprint hospital))
 
-(simulate-a-day)
+;;(simulate-a-day)
+
+(defn add-in-waiting
+  [hospital user-id]
+  (c.logic/delayed-add-in-queue hospital :waiting user-id))
+
+
+;; GLOBAL variable problems when sharing memory space in parallel code
+(defn simulate-a-parallel-day []
+  (def hospital (c.model/create-hospital))
+  (.start (Thread. (fn [] (def hospital (add-in-waiting hospital "111")))))
+  (.start (Thread. (fn [] (def hospital (add-in-waiting hospital "222")))))
+  (.start (Thread. (fn [] (def hospital (add-in-waiting hospital "333")))))
+  (.start (Thread. (fn [] (def hospital (add-in-waiting hospital "444")))))
+  (.start (Thread. (fn [] (def hospital (add-in-waiting hospital "555")))))
+  (.start (Thread. (fn [] (def hospital (add-in-waiting hospital "666")))))
+  (.start (Thread. (fn [] (def hospital (add-in-waiting hospital "777")))))
+  (.start (Thread. (fn [] (Thread/sleep 4000)
+                           (pprint hospital)))))
+
+(simulate-a-parallel-day)
