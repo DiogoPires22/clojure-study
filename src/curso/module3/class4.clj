@@ -21,7 +21,7 @@
 (defn start-begin-thread-without-partial
   ([hospital] (fn
                 [people]
-                (start-begin-thread hospital people)))
+                (start-begin-thread-without-partial hospital people)))
   ([hospital people]
   (.start (Thread. (fn [] (add-in-waiting-without-sleep! hospital people))))))
 
@@ -49,9 +49,17 @@
     (.start (Thread. (fn [] (Thread/sleep 1000)
                        (pprint hospital))))))
 
-(simulate-a-parallel-day-with-atoms-with-mapv-partial)
+
+(defn simulate-a-parallel-day-with-atoms-with-doseq-partial
+  "USING MAPV WITH CURRYING"
+  []
+  (let [hospital (atom (c.model/create-hospital))
+        users ["111", "222", "333", "444", "555", "666"]]
+    (doseq [user users]
+      (start-begin-thread hospital user))
+      (pprint hospital)))
+
+(simulate-a-parallel-day-with-atoms-with-doseq-partial)
 
 
-
-
-
+(dotimes [n 5] (println "number" n))

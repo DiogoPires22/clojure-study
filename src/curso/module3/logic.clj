@@ -1,4 +1,5 @@
-(ns curso.module3.logic)
+(ns curso.module3.logic
+  (:use [clojure.pprint]))
 
 (defn available-allocation?
   [hospital queue-key]
@@ -26,3 +27,35 @@
 (defn start-treatment
   [hospital queue]
   (update hospital queue pop))
+
+(defn complete-start-treatment
+  "horrible name rsrsrs"
+  [hospital queue]
+  {:user  (peek (get hospital queue))
+   :hospital (update hospital queue pop)})
+
+
+(defn start-treatment-with-juxt
+  "horrible name rsrsrs"
+  [hospital queue-id]
+  (let [queue (get hospital queue-id)
+        peek-pop (juxt peek pop)
+        [user updated-queue] (peek-pop queue)
+        updated-hospital (assoc hospital queue-id updated-queue)]
+    {:user  user
+     :hospital updated-hospital}))
+
+(defn get-next
+  "get the next "
+  [hospital queue]
+  (-> hospital
+      (queue)
+      peek))
+
+(defn transfer
+  [hospital from to]
+  (let [people (get-next hospital from)]
+    (-> hospital
+        (start-treatment-with-juxt from)
+        (:hospital)
+        (add-in-queue to people))))
